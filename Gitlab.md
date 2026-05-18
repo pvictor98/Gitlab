@@ -183,3 +183,28 @@ su: unknown login: gitlab-runner
 section_end:1779099687:prepare_script
 [0K[31;1mERROR: Job failed: prepare environment: exit status 1. Check https://docs.gitlab.com/runner/shells/index.html#shell-profile-loading for more information
 [0;m
+
+
+_________________________________
+
+before_script:
+  # 1. Create an empty file to hold all your custom certificates
+  - touch custom-ca-bundle.pem
+  
+  # 2. Append all your File-type variables into this single bundle
+  - |
+    for cert in \
+      "$uatrouterca" \
+      "$uatcacrt" \
+      "$devrouterca" \
+      "$devcacrt" \
+      "$cpddev" \
+      "$cpduat"
+    do
+      if [ -n "$cert" ] && [ -f "$cert" ]; then
+        echo "Appending $cert to bundle..."
+        cat "$cert" >> custom-ca-bundle.pem
+        # Add a newline just in case the certs lack one at the end
+        echo "" >> custom-ca-bundle.pem
+      fi
+    done
