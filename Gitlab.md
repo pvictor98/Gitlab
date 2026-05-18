@@ -42,3 +42,29 @@ $ curl -vk https://cpd-bawdev.apps.cp4badevsaibocp.saibnet2.saib.com
 * Closing connection 0
 curl: (35) OpenSSL SSL_connect: SSL_ERROR_SYSCALL in connection to cpd-bawdev.apps.cp4badevsaibocp.saibnet2.saib.com:443 
 Cleaning up project directory and file based variables
+
+___________________________________________________
+
+stages:
+  - upload
+
+before_script:
+  - |
+    for var in uatrouterca uatcacrt devrouterca devcacrt cpddev cpduat
+    do
+      eval "echo \"\$$var\"" > ${var}.crt
+      cp ${var}.crt /etc/pki/ca-trust/source/anchors/
+
+ upload-to-nexus:
+  stage: upload
+  script:
+    # Create file
+    - touch testfile.txt
+    - echo "created from gitlab pipeline $(date)" > testfile.txt
+
+    # Upload to Nexus
+    - |
+      curl -v \
+      -u "$NEXUS_USER:$NEXUS_PASSWORD" \
+      --upload-file testfile.txt \
+      "https://nexus.test.com/repository/my-raw-repo/gitlab/testfile.txt"
