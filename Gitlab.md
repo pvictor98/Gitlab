@@ -49,11 +49,26 @@ stages:
   - upload
 
 before_script:
+  - mkdir -p /etc/pki/ca-trust/source/anchors/
+
   - |
-    for var in uatrouterca uatcacrt devrouterca devcacrt cpddev cpduat
+    for cert in \
+      "$uatrouterca" \
+      "$uatcacrt" \
+      "$devrouterca" \
+      "$devcacrt" \
+      "$cpddev" \
+      "$cpduat"
     do
-      eval "echo \"\$$var\"" > ${var}.crt
-      cp ${var}.crt /etc/pki/ca-trust/source/anchors/
+      if [ -n "$cert" ] && [ -f "$cert" ]; then
+        echo "Adding $cert"
+        cp "$cert" /etc/pki/ca-trust/source/anchors/
+      else
+        echo "Skipping missing cert: $cert"
+      fi
+    done
+
+  - update-ca-trust
 
  upload-to-nexus:
   stage: upload
