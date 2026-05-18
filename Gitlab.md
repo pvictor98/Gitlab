@@ -138,3 +138,31 @@ p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/edk2/cacerts.bin: Unk
 Cleaning up project directory and file based variables
 00:00
 ERROR: Job failed: exit status 1
+
+
+
+
+before_script:
+  # Use sudo to create the directory if it doesn't exist
+  - sudo mkdir -p /etc/pki/ca-trust/source/anchors/
+
+  - |
+    for cert in \
+      "$uatrouterca" \
+      "$uatcacrt" \
+      "$devrouterca" \
+      "$devcacrt" \
+      "$cpddev" \
+      "$cpduat"
+    do
+      # Now that these are "File" type variables, $cert will contain a file path
+      if [ -n "$cert" ] && [ -f "$cert" ]; then
+        echo "Adding certificate from path: $cert"
+        sudo cp "$cert" /etc/pki/ca-trust/source/anchors/
+      else
+        echo "Skipping missing or invalid cert path: $cert"
+      fi
+    done
+
+  # Use sudo to update the system trust store
+  - sudo update-ca-trust
