@@ -68,3 +68,15 @@ before_script:
       -u "$NEXUS_USER:$NEXUS_PASSWORD" \
       --upload-file testfile.txt \
       "https://nexus.test.com/repository/my-raw-repo/gitlab/testfile.txt"
+
+
+Checking out 62562a09 as detached HEAD (ref is main)...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script
+00:00
+$ unset cd
+$ for var in uatrouterca uatcacrt devrouterca devcacrt cpddev cpduat # collapsed multi-line command
+bash: eval: line 192: syntax error: unexpected end of file
+Cleaning up project directory and file based variables
+00:00
+ERROR: Job failed: exit status 2
