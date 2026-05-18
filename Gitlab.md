@@ -95,3 +95,46 @@ bash: eval: line 192: syntax error: unexpected end of file
 Cleaning up project directory and file based variables
 00:00
 ERROR: Job failed: exit status 2
+
+_____
+
+Fetching changes with git depth set to 20...
+Reinitialized existing Git repository in /opt/gitlab-runner/builds/RzjU9CuY/0/cp4ba/cp4ba-pipeline/.git/
+Checking out 6567c576 as detached HEAD (ref is main)...
+Skipping Git submodules setup
+Executing "step_script" stage of the job script
+00:01
+$ mkdir -p /etc/pki/ca-trust/source/anchors/
+$ for cert in \ # collapsed multi-line command
+Skipping missing cert: -----BEGIN CERTIFICATE-----
+MIIDDDCCAfSgAwIBAgIBATANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtpbmdy
+ZXNzLW9wZXJhdG9yQDE3NjM2NDgwMzEwHhcNMjUxMTIwMTQxMzUwWhcNMjcxMTIw
+MTQxMzUxWjAmMSQwIgYDVQQDDBtpbmdyZXNzLW9wZXJhdG9yQDE3NjM2NDgwMzEw
+ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCsZ200rjXVuJCxZgQURiJ6
+dE6+tfZcsg1K6VUrVqCU/LC3WmUzxYU13EUYJ9839Nw9x8ClYaJLDzEHxvggAxmm
+FOt99YmmvYFvtDoQpiRN0qMz04ugmJA7saAn03DKE83yzkbGhG3ygDAHx5+pnyjJ
+A2c5EIAgGlW81U/u7DUQDSVFZUClrMxChS6YLA6EkNy8ar7O8diGDNdgCrypz3ea
+WtnKDTLbiUvZ5Dp5loH87SZJdCPKhcE7MCX7miMw1HWzEM8yozbNSv2Q9H5o9qRi
+tXY/nhwSnIxFu6OoFkS7X0pcc0ebtecrV/fdI5iIQ3meQyt2cRpHeVBu1+TMDno/
+AgMBAAGjRTBDMA4GA1UdDwEB/wQEAwICpDASBgNVHRMBAf8ECDAGAQH/AgEAMB0G
+A1UdDgQWBBTE4fJ5rFxPBE/kkUGwDa+fOqmaBjANBgkqhkiG9w0BAQsFAAOCAQEA
+MLz5rlJU/qHj6ZNlB9cvaxR8L8Ery/pCzKx0DHJiYDPKxk2POoTphkyYO/3N6Bij
+TM+e7WVwo9R8Ew4Jo2UkZElXXkrr1v2kzeAUIbVZ/9j2QOir8GPfT/Q+WzqIIqHF
+vD2B6CMkzF6iSAakxGL8gaJs1gebEtxFeF1NuCNb8Aw8bqqBIE4RisCuhgUOfajT
+UiAMW+Ucw3YXeeN51zQKtsjkbj3zMtPsjWfQJlyQAQpO9kb/nN4w0pFNup3QWlNv
++HA2scrPPSXwyzK9Ymd5hfyQq76x2c1hCcVWBkAaqpMCCIABkF0BIRTnZDqxhXJQ
+1KWUoiEgulOpygpMQDKLTQ==
+-----END CERTIFICATE-----
+Skipping missing cert: -----BEGIN CERTIFICATE-----
+.....
+....
+$ update-ca-trust
+p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt: Unknown error 13
+p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem: Unknown error 13
+p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/pem/email-ca-bundle.pem: Unknown error 13
+p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem: Unknown error 13
+p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/java/cacerts: Unknown error 13
+p11-kit: couldn't create file: /etc/pki/ca-trust/extracted/edk2/cacerts.bin: Unknown error 13
+Cleaning up project directory and file based variables
+00:00
+ERROR: Job failed: exit status 1
