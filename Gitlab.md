@@ -188,23 +188,18 @@ section_end:1779099687:prepare_script
 _________________________________
 
 before_script:
-  # 1. Create an empty file to hold all your custom certificates
+  # 1. Create an empty file to hold all custom certificates
   - touch custom-ca-bundle.pem
   
-  # 2. Append all your File-type variables into this single bundle
+  # 2. Append all File-type variables into this single bundle
   - |
-    for cert in \
-      "$uatrouterca" \
-      "$uatcacrt" \
-      "$devrouterca" \
-      "$devcacrt" \
-      "$cpddev" \
-      "$cpduat"
-    do
+    for cert in "$uatrouterca" "$uatcacrt" "$devrouterca" "$devcacrt" "$cpddev" "$cpduat"; do
       if [ -n "$cert" ] && [ -f "$cert" ]; then
-        echo "Appending $cert to bundle..."
         cat "$cert" >> custom-ca-bundle.pem
-        # Add a newline just in case the certs lack one at the end
         echo "" >> custom-ca-bundle.pem
       fi
     done
+  
+  # Export variables pointing to your custom bundle
+  - export CURL_CA_BUNDLE="$CI_PROJECT_DIR/custom-ca-bundle.pem"
+  - export SSL_CERT_FILE="$CI_PROJECT_DIR/custom-ca-bundle.pem"
