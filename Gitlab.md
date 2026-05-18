@@ -166,3 +166,20 @@ before_script:
 
   # Use sudo to update the system trust store
   - sudo update-ca-trust
+
+
+[0KRunning with gitlab-runner 16.8.0 (c72a09b6)[0;m
+[0K  on SAIBMACAK vH9cdDUk, system ID: s_94a06f221678[0;m
+section_start:1779099687:resolve_secrets
+[0K[0K[36;1mResolving secrets[0;m[0;m
+section_end:1779099687:resolve_secrets
+[0Ksection_start:1779099687:prepare_executor
+[0K[0K[36;1mPreparing the "shell" executor[0;m[0;m
+[0KUsing Shell (bash) executor...[0;m
+section_end:1779099687:prepare_executor
+[0Ksection_start:1779099687:prepare_script
+[0K[0K[36;1mPreparing environment[0;m[0;m
+su: unknown login: gitlab-runner
+section_end:1779099687:prepare_script
+[0K[31;1mERROR: Job failed: prepare environment: exit status 1. Check https://docs.gitlab.com/runner/shells/index.html#shell-profile-loading for more information
+[0;m
